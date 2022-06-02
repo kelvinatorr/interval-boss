@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Label",
+"class": "LabelTimer",
+"language": "GDScript",
+"path": "res://src/Timer.gd"
+} ]
+_global_script_class_icons={
+"LabelTimer": ""
+}
+
 [application]
 
 config/name="Interval Boss"

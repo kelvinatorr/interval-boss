@@ -1,24 +1,31 @@
 extends Label
+class_name LabelTimer
 
-onready var my_timer: Timer = $Timer
-onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+onready var _my_timer: Timer = $Timer
+onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
-func _physics_process(delta: float) -> void:
-	self.text = Helper.format_time(my_timer.time_left)
+signal timer_timeout(timer)
+
+func _physics_process(_delta: float) -> void:
+	self.text = Helper.format_time(_my_timer.time_left)
 
 func start() -> void:
-	if my_timer.paused:
-		my_timer.paused = false
+	if _my_timer.paused:
+		_my_timer.paused = false
 	else:
-		my_timer.start()
+		_my_timer.start()
 
 func pause() -> void:
-	my_timer.paused = true
+	_my_timer.paused = true
 
 func _on_Timer_timeout() -> void:
 	# Play alarm sound
-	audio_stream_player.play()
+	_audio_stream_player.play()
+	self.emit_signal("timer_timeout", self)
 
 func stop_sound() -> void:
-	if audio_stream_player.playing:
-		audio_stream_player.stop()
+	if _audio_stream_player.playing:
+		_audio_stream_player.stop()
+
+func is_stopped() -> bool:
+	return _my_timer.is_stopped()
