@@ -5,7 +5,7 @@ onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _physics_process(delta: float) -> void:
 	self.text = Helper.format_time(my_timer.time_left)
-	
+
 func start() -> void:
 	if my_timer.paused:
 		my_timer.paused = false
@@ -14,7 +14,6 @@ func start() -> void:
 
 func pause() -> void:
 	my_timer.paused = true
-
 
 func _on_Timer_timeout() -> void:
 	# Play alarm sound
