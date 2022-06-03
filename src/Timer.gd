@@ -6,8 +6,12 @@ onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 signal timer_timeout(timer)
 
-func _physics_process(_delta: float) -> void:
-	self.text = Helper.format_time(_my_timer.time_left)
+func _ready() -> void:
+	self.text = Helper.format_time(_my_timer.wait_time)
+
+func _physics_process(delta: float) -> void:
+	if not _my_timer.is_stopped():
+		self.text = Helper.format_time(_my_timer.time_left)
 
 func start() -> void:
 	if _my_timer.paused:
@@ -22,6 +26,7 @@ func _on_Timer_timeout() -> void:
 	# Play alarm sound
 	_audio_stream_player.play()
 	self.emit_signal("timer_timeout", self)
+	self.text = Helper.format_time(0.0)
 
 func stop_sound() -> void:
 	if _audio_stream_player.playing:
