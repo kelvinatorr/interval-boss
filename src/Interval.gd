@@ -25,6 +25,10 @@ func _on_Start_button_up() -> void:
 	else:
 		start()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("start_pause"):
+		_on_Start_button_up()
+
 func pause(rt: LabelTimer)-> void:
 	start_button_label.text = "START"
 	rt.pause()
