@@ -3,16 +3,17 @@ extends Control
 var running_timer: LabelTimer = null
 var rounds: int = 0
 var rounds_label_text = "Rounds: %s"
+var timers: Array
 
 onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
-onready var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
-onready var transition_timer: LabelTimer = $MarginContainer/VBoxContainer/VBoxContainer/TTimer
-onready var timer_2: LabelTimer = $MarginContainer/VBoxContainer/Timer2
-onready var timers: Array = [timer_1, transition_timer, timer_2]
 onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var rounds_label: Label = $MarginContainer/VBoxContainer/Rounds
 
 func _ready() -> void:
+	var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
+	var transition_timer: LabelTimer = $MarginContainer/VBoxContainer/VBoxContainer/TTimer
+	var timer_2: LabelTimer = $MarginContainer/VBoxContainer/Timer2
+	timers = [timer_1, transition_timer, timer_2]
 	for t in timers:
 		t.connect("timer_timeout", self, "_on_timer_timeout")
 
@@ -44,7 +45,7 @@ func get_running_timer(ts: Array) -> LabelTimer:
 	for t in ts:
 		if not t.is_stopped():
 			return t
-	return timer_1
+	return ts[0]
 
 func get_next_timer(ts: Array, current_t: LabelTimer) -> LabelTimer:
 	var next: bool = false
