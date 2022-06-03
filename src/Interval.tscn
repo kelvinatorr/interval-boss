@@ -79,7 +79,7 @@ margin_right = 430.0
 margin_bottom = 346.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.705882 )
 custom_fonts/font = ExtResource( 8 )
-text = "Rounds: 7"
+text = "Rounds: 00"
 align = 1
 valign = 1
 
