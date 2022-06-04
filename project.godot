@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Label",
+"base": "Control",
 "class": "LabelTimer",
 "language": "GDScript",
 "path": "res://src/Timer.gd"

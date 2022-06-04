@@ -54,7 +54,7 @@ size_flags_vertical = 5
 alignment = 1
 
 [node name="Transition" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 430.0
 margin_bottom = 28.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.705882 )
@@ -66,7 +66,11 @@ valign = 1
 [node name="TTimer" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 32.0
 margin_bottom = 55.0
-rect_min_size = Vector2( 0, 0 )
+rect_min_size = Vector2( 300, 20 )
+
+[node name="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/TTimer" index="0"]
+margin_bottom = 23.0
+rect_min_size = Vector2( 300, 30 )
 custom_fonts/font = ExtResource( 8 )
 
 [node name="Timer2" parent="MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
@@ -164,3 +168,5 @@ stream = ExtResource( 4 )
 
 [connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/OneShotButton" to="." method="_on_OneShotButton_toggled"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Start" to="." method="_on_Start_button_up"]
+
+[editable path="MarginContainer/VBoxContainer/VBoxContainer/TTimer"]

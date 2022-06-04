@@ -1,8 +1,9 @@
-extends Label
+extends Control
 class_name LabelTimer
 
 onready var _my_timer: Timer = $Timer
 onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+onready var _label: Label = $Label
 
 signal timer_timeout(timer)
 
@@ -11,7 +12,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not _my_timer.is_stopped():
-		self.text = Helper.format_time(_my_timer.time_left)
+		self._label.text = Helper.format_time(_my_timer.time_left)
 
 func start() -> void:
 	if _my_timer.paused:
@@ -26,7 +27,7 @@ func pause() -> void:
 func _on_Timer_timeout() -> void:
 	# Play alarm sound
 	_audio_stream_player.play()
-	self.text = Helper.format_time(0.0)
+	self._label.text = Helper.format_time(0.0)
 	self.emit_signal("timer_timeout", self)
 
 func stop_sound() -> void:
@@ -37,4 +38,4 @@ func is_stopped() -> bool:
 	return _my_timer.is_stopped()
 
 func show_wait_time() -> void:
-	self.text = Helper.format_time(_my_timer.wait_time)
+	self._label.text = Helper.format_time(_my_timer.wait_time)
