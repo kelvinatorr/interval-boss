@@ -115,6 +115,7 @@ margin_top = 12.0
 margin_right = 38.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 30, 30 )
+toggle_mode = true
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 
@@ -161,4 +162,5 @@ valign = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/OneShotButton" to="." method="_on_OneShotButton_toggled"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Start" to="." method="_on_Start_button_up"]
