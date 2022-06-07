@@ -5,10 +5,12 @@ var rounds: int = 0
 var rounds_label_text = "Rounds: %s"
 var timers: Array
 var one_shot: bool = true
+var is_editing: bool = false
 
 onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
 onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var rounds_label: Label = $MarginContainer/VBoxContainer/Rounds
+onready var edit_button_label: Label = $MarginContainer/VBoxContainer/Edit/Label
 
 func _ready() -> void:
 	var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
@@ -23,6 +25,9 @@ func _ready() -> void:
 
 func _on_Start_button_up() -> void:
 	audio_stream_player.play()
+	if is_editing:
+		save_edits(timers)
+
 	if running_timer:
 		stop_timer_sounds(timers)
 		pause(running_timer)
@@ -32,6 +37,8 @@ func _on_Start_button_up() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_pause"):
 		_on_Start_button_up()
+	elif event.is_action_pressed("edit"):
+		_on_Edit_button_up()
 
 func pause(rt: LabelTimer)-> void:
 	start_button_label.text = "START"
@@ -86,4 +93,25 @@ func show_wait_times(ts: Array) -> void:
 	for t in ts:
 		t.show_wait_time()
 
+func enable_edits(ts: Array) -> void:
+	for t in ts:
+		t.edit()
+	ts[0].grab_focus()
+	edit_button_label.text = "SAVE"
+	is_editing = !is_editing
 
+func save_edits(ts: Array) -> void:
+	for t in ts:
+		t.save_edit()
+	edit_button_label.text = "EDIT"
+	is_editing = !is_editing
+
+func _on_Edit_button_up() -> void:
+	audio_stream_player.play()
+	if running_timer != null:
+		pause(running_timer)
+
+	if not is_editing:
+		enable_edits(timers)
+	else:
+		save_edits(timers)
