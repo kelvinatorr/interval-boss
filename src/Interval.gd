@@ -51,9 +51,9 @@ func start() -> void:
 func _on_timer_timeout(t: LabelTimer) -> void:
 	if t == timers[-1]:
 		# The last timer timed out
-		rounds.increment_rounds()
+		var done: bool = rounds.increment_rounds()
 		self.show_wait_times(timers)
-		if one_shot:
+		if one_shot or done:
 			pause(t)
 			return
 	running_timer = get_next_timer(timers, t)

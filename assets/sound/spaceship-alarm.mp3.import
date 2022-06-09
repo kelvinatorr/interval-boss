@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/spaceship-alarm.mp3-e5340994594fe8a8404327c8719ab1e3.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/spaceship-alarm.mp3"
+dest_files=[ "res://.import/spaceship-alarm.mp3-e5340994594fe8a8404327c8719ab1e3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
