@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "LabelTimer",
 "language": "GDScript",
 "path": "res://src/Timer.gd"
+}, {
+"base": "Control",
+"class": "Rounds",
+"language": "GDScript",
+"path": "res://src/Rounds.gd"
 } ]
 _global_script_class_icons={
-"LabelTimer": ""
+"LabelTimer": "",
+"Rounds": ""
 }
 
 [application]

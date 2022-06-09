@@ -1,15 +1,13 @@
 extends Control
 
 var running_timer: LabelTimer = null
-var rounds: int = 0
-var rounds_label_text = "Rounds: %s"
 var timers: Array
 var one_shot: bool = true
 var is_editing: bool = false
 
 onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
 onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-onready var rounds_label: Label = $MarginContainer/VBoxContainer/Rounds
+onready var rounds: Rounds = $MarginContainer/VBoxContainer/Rounds
 onready var edit_button_label: Label = $MarginContainer/VBoxContainer/Edit/Label
 
 func _ready() -> void:
@@ -53,7 +51,7 @@ func start() -> void:
 func _on_timer_timeout(t: LabelTimer) -> void:
 	if t == timers[-1]:
 		# The last timer timed out
-		increment_rounds()
+		rounds.increment_rounds()
 		self.show_wait_times(timers)
 		if one_shot:
 			pause(t)
@@ -80,12 +78,6 @@ func stop_timer_sounds(ts: Array) -> void:
 	for t in ts:
 		t.stop_sound()
 
-func increment_rounds() -> void:
-	if rounds >= 99:
-		return
-	rounds += 1
-	rounds_label.text = rounds_label_text % Helper.pad_int(str(rounds))
-
 func _on_OneShotButton_toggled(button_pressed: bool) -> void:
 	one_shot = button_pressed
 
@@ -97,12 +89,14 @@ func enable_edits(ts: Array) -> void:
 	for t in ts:
 		t.edit()
 	ts[0].grab_focus()
+	rounds.edit()
 	edit_button_label.text = "SAVE"
 	is_editing = !is_editing
 
 func save_edits(ts: Array) -> void:
 	for t in ts:
 		t.save_edit()
+	rounds.save_edit()
 	edit_button_label.text = "EDIT"
 	is_editing = !is_editing
 
