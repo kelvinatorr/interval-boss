@@ -11,10 +11,10 @@ onready var rounds: Rounds = $MarginContainer/VBoxContainer/Rounds
 onready var edit_button_label: Label = $MarginContainer/VBoxContainer/Edit/Label
 
 func _ready() -> void:
+	var gr_timer: LabelTimer = $MarginContainer/VBoxContainer/VBoxContainer/GRTimer
 	var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
-	var transition_timer: LabelTimer = $MarginContainer/VBoxContainer/VBoxContainer/TTimer
 	var timer_2: LabelTimer = $MarginContainer/VBoxContainer/Timer2
-	timers = [timer_1, transition_timer, timer_2]
+	timers = [gr_timer, timer_1, timer_2]
 	for t in timers:
 		t.connect("timer_timeout", self, "_on_timer_timeout")
 	# Set the one_shot button state
