@@ -91,6 +91,8 @@ func enable_edits(ts: Array) -> void:
 	ts[0].grab_focus()
 	rounds.edit()
 	edit_button_label.text = "SAVE"
+	edit_button_label.add_color_override("font_color_shadow", Color(0, 0, 0, 0))
+	edit_button_label.add_color_override("font_color", "b4000000")
 	is_editing = !is_editing
 
 func save_edits(ts: Array) -> void:
@@ -98,6 +100,8 @@ func save_edits(ts: Array) -> void:
 		t.save_edit()
 	rounds.save_edit()
 	edit_button_label.text = "EDIT"
+	edit_button_label.add_color_override("font_color_shadow", "b4000000")
+	edit_button_label.add_color_override("font_color", Color(1, 1, 1, 1))
 	is_editing = !is_editing
 
 func _on_Edit_button_up() -> void:
