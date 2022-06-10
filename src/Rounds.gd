@@ -39,9 +39,6 @@ func increment_rounds() -> bool:
 func _set_text(rounds_int: int) -> void:
 	_label.text = rounds_label_text % Helper.pad_int(str(rounds_int))
 
-func set_rounds(rounds: int) -> void:
-	rounds = rounds
-
 func edit() -> void:
 	# Edit the num_rounds_set not the current rounds, because when it saves, the round is reset
 	if num_rounds_set == null:
