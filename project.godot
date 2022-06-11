@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Rounds",
 "language": "GDScript",
 "path": "res://src/Rounds.gd"
+}, {
+"base": "Node",
+"class": "SoundConductor",
+"language": "GDScript",
+"path": "res://SoundConductor.gd"
 } ]
 _global_script_class_icons={
 "LabelTimer": "",
-"Rounds": ""
+"Rounds": "",
+"SoundConductor": ""
 }
 
 [application]

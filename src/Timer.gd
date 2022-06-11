@@ -4,7 +4,6 @@ class_name LabelTimer
 var wait_time: float = 0.0
 
 onready var _my_timer: Timer = $Timer
-onready var _audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 onready var _label: Label = $Label
 onready var _hbox_container_edit: HBoxContainer = $HBoxContainer
 onready var _min_line_edit: LineEdit = $HBoxContainer/MinEdit
@@ -35,14 +34,8 @@ func pause() -> void:
 		_my_timer.paused = true
 
 func _on_Timer_timeout() -> void:
-	# Play alarm sound
-	_audio_stream_player.play()
 	self._label.text = Helper.format_time(0.0)
 	self.emit_signal("timer_timeout", self)
-
-func stop_sound() -> void:
-	if _audio_stream_player.playing:
-		_audio_stream_player.stop()
 
 func is_stopped() -> bool:
 	return _my_timer.is_stopped()

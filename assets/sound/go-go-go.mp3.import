@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/go-go-go.mp3-df02353d8028e5e4a1b647d8f6d0f3a3.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/go-go-go.mp3"
+dest_files=[ "res://.import/go-go-go.mp3-df02353d8028e5e4a1b647d8f6d0f3a3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

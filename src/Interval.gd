@@ -6,7 +6,7 @@ var one_shot: bool = true
 var is_editing: bool = false
 
 onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
-onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+onready var sound_conductor: SoundConductor = $SoundConductor
 onready var rounds: Rounds = $MarginContainer/VBoxContainer/Rounds
 onready var edit_button_label: Label = $MarginContainer/VBoxContainer/Edit/Label
 
@@ -22,12 +22,11 @@ func _ready() -> void:
 	one_shot_button.pressed = one_shot
 
 func _on_Start_button_up() -> void:
-	audio_stream_player.play()
+	sound_conductor.beep()
 	if is_editing:
 		save_edits(timers)
 
 	if running_timer:
-		stop_timer_sounds(timers)
 		pause(running_timer)
 	else:
 		start()
@@ -54,8 +53,12 @@ func _on_timer_timeout(t: LabelTimer) -> void:
 		var done: bool = rounds.increment_rounds()
 		self.show_wait_times(timers)
 		if one_shot or done:
+			if t.wait_time != 0.0:
+				sound_conductor.play_timer_finish(false, done)
 			pause(t)
 			return
+	if t.wait_time != 0.0:
+		sound_conductor.play_timer_finish(t == timers[0], false)
 	running_timer = get_next_timer(timers, t)
 	running_timer.start()
 
@@ -73,10 +76,6 @@ func get_next_timer(ts: Array, current_t: LabelTimer) -> LabelTimer:
 		if t == current_t:
 			next = true
 	return ts[0]
-
-func stop_timer_sounds(ts: Array) -> void:
-	for t in ts:
-		t.stop_sound()
 
 func _on_OneShotButton_toggled(button_pressed: bool) -> void:
 	one_shot = button_pressed
@@ -105,7 +104,7 @@ func save_edits(ts: Array) -> void:
 	is_editing = !is_editing
 
 func _on_Edit_button_up() -> void:
-	audio_stream_player.play()
+	sound_conductor.beep()
 	if running_timer != null:
 		pause(running_timer)
 
