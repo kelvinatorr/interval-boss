@@ -16,7 +16,7 @@ func _ready() -> void:
 		_my_timer.wait_time = wait_time
 	self.show_wait_time()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_stopped():
 		self._label.text = Helper.format_time(_my_timer.time_left)
 
