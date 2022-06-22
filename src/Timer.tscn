@@ -28,13 +28,16 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 300, 60 )
 size_flags_horizontal = 5
 size_flags_vertical = 4
+custom_constants/separation = 0
 alignment = 1
 
 [node name="MinEdit" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 155.0
+margin_right = 203.0
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 208.0
-margin_right = 221.0
+margin_left = 203.0
+margin_right = 227.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 4
@@ -45,8 +48,8 @@ align = 1
 valign = 1
 
 [node name="SecEdit" parent="HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 225.0
-margin_right = 345.0
+margin_left = 227.0
+margin_right = 275.0
 align = 0
 
 [node name="Timer" type="Timer" parent="."]
