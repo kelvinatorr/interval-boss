@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/button-size-40.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/TimeEdit.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="MinEdit" type="LineEdit"]
+margin_left = 84.0
+margin_right = 204.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_horizontal = 4
+custom_colors/cursor_color = Color( 0, 0, 0, 0.705882 )
+custom_colors/font_color = Color( 0, 0, 0, 0.705882 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "00"
+align = 2
+max_length = 2
+caret_blink = true
+script = ExtResource( 2 )
+
+[connection signal="focus_entered" from="." to="." method="_on_MinEdit_focus_entered"]
+[connection signal="text_changed" from="." to="." method="_on_MinEdit_text_changed"]

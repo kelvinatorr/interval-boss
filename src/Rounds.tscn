@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/label-size-20.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/TimeEdit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Rounds.gd" type="Script" id=3]
+
+[node name="Rounds" type="HBoxContainer"]
+margin_top = 323.0
+margin_right = 430.0
+margin_bottom = 346.0
+rect_min_size = Vector2( 300, 23 )
+size_flags_horizontal = 4
+alignment = 1
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 141.0
+margin_right = 289.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 0, 23 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.705882 )
+custom_fonts/font = ExtResource( 1 )
+text = "Rounds: 00"
+valign = 1
+
+[node name="LabelEdit" type="Label" parent="."]
+visible = false
+margin_left = 184.0
+margin_right = 329.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 145, 23 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.705882 )
+custom_fonts/font = ExtResource( 1 )
+text = "Rounds: "
+align = 2
+valign = 1
+
+[node name="RoundEdit" parent="." instance=ExtResource( 2 )]
+visible = false
+margin_left = 261.0
+margin_right = 321.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 0, 23 )
+custom_fonts/font = ExtResource( 1 )
+align = 0
+caret_blink_speed = 0.5
