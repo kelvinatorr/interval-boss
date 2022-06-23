@@ -42,8 +42,8 @@ Helper="*res://src/Helper.gd"
 
 [display]
 
-window/size/width=480
-window/size/height=720
+window/size/width=411
+window/size/height=731
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
