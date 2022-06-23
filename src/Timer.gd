@@ -2,6 +2,7 @@ extends Control
 class_name LabelTimer
 
 var wait_time: float = 0.0
+var idx: int = 0
 
 onready var _my_timer: Timer = $Timer
 onready var _label: Label = $Label

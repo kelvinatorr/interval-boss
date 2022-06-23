@@ -15,7 +15,9 @@ func _ready() -> void:
 	var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
 	var timer_2: LabelTimer = $MarginContainer/VBoxContainer/Timer2
 	timers = [gr_timer, timer_1, timer_2]
-	for t in timers:
+	for i in len(timers):
+		var t: LabelTimer = timers[i]
+		t.idx = i
 		t.connect("timer_timeout", self, "_on_timer_timeout")
 	# Set the one_shot button state
 	var one_shot_button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/OneShotButton
@@ -53,13 +55,15 @@ func _on_timer_timeout(t: LabelTimer) -> void:
 		var done: bool = rounds.increment_rounds()
 		self.show_wait_times(timers)
 		if one_shot or done:
-			if t.wait_time != 0.0:
-				sound_conductor.play_timer_finish(false, done)
+			if done:
+				sound_conductor.play_done()
+			else:
+				sound_conductor.play_timer_finish(t, timers[0], rounds)
 			pause(t)
 			return
-	if t.wait_time != 0.0:
-		sound_conductor.play_timer_finish(t == timers[0], false)
 	running_timer = get_next_timer(timers, t)
+	sound_conductor.play_timer_finish(t, running_timer, rounds)
+
 	running_timer.start()
 
 func get_running_timer(ts: Array) -> LabelTimer:
