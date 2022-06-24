@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "SoundConductor",
 "language": "GDScript",
-"path": "res://SoundConductor.gd"
+"path": "res://src/SoundConductor.gd"
 } ]
 _global_script_class_icons={
 "LabelTimer": "",
