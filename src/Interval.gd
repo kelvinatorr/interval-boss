@@ -30,7 +30,7 @@ func _on_Start_button_up() -> void:
 
 	if running_timer:
 		pause(running_timer)
-	else:
+	elif check_wait_times(timers):
 		start()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,6 +38,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_Start_button_up()
 	elif event.is_action_pressed("edit"):
 		_on_Edit_button_up()
+
+func check_wait_times(ts: Array) -> bool:
+	# If at least 1 timer has a wait_time then return true
+	var has_wait_time: bool = false
+	for t in ts:
+		if t.wait_time != 0.0:
+			has_wait_time = true
+			break
+	return has_wait_time
 
 func pause(rt: LabelTimer)-> void:
 	start_button_label.text = "START"
