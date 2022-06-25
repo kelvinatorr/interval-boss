@@ -67,12 +67,12 @@ func _on_timer_timeout(t: LabelTimer) -> void:
 			if done:
 				sound_conductor.play_done()
 			else:
-				sound_conductor.play_timer_finish(t, timers[0], rounds)
+				sound_conductor.play_timer_finish(t.idx, timers, rounds)
 			pause(t)
 			return
-	running_timer = get_next_timer(timers, t)
-	sound_conductor.play_timer_finish(t, running_timer, rounds)
 
+	sound_conductor.play_timer_finish(t.idx, timers, rounds)
+	running_timer = get_next_timer(timers, t)
 	running_timer.start()
 
 func get_running_timer(ts: Array) -> LabelTimer:

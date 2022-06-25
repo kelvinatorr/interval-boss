@@ -15,19 +15,25 @@ func play_done() -> void:
 	stop_sound()
 	_spaceship_alarm.play()
 
-func play_timer_finish(t: LabelTimer, next_t: LabelTimer, rounds: Rounds) -> void:
+func play_timer_finish(t_idx: int, timers: Array, rounds: Rounds) -> void:
+	var t: LabelTimer = timers[t_idx]
 	if t.wait_time == 0.0:
 		return
+
+	# If we are in rounds mode and it is the last round, 
+	# look ahead to see if there are future timers with wait times
+	if rounds.num_rounds_set != null and (rounds.rounds - 1) == 0:
+		var no_future_waits: bool = true
+		for timer in timers:
+			if timer != t and timer.wait_time != 0.0:
+				no_future_waits = false
+		if no_future_waits:
+			# Because it is the last round and the spaceship alarm should play next
+			return
 
 	stop_sound()
 	if t.idx == 0:
 		_go_go_go.play()
-	elif t.idx == 1:
-		if rounds.num_rounds_set == null:
-			_alarm_clock.play()
-		else:
-			if next_t.wait_time != 0.0 or (rounds.rounds - 1) != 0:
-				_alarm_clock.play()
 	else:
 		_alarm_clock.play()
 
