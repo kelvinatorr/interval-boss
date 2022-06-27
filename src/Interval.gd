@@ -26,7 +26,7 @@ func _ready() -> void:
 		var t: LabelTimer = timers[i]
 		t.idx = i
 		t.connect("timer_timeout", self, "_on_timer_timeout")
-		t.wait_time = settings.waits[i]
+		t.set_wait_time(settings.waits[i])
 		t.show_wait_time()
 	# Set the rounds
 	if settings.rounds != 0:
@@ -133,7 +133,10 @@ func save_edits(ts: Array) -> void:
 	edit_button_label.text = "EDIT"
 	edit_button_label.add_color_override("font_color_shadow", "b4000000")
 	edit_button_label.add_color_override("font_color", Color(1, 1, 1, 1))
-	settings.write_save(new_waits, rounds.num_rounds_set, one_shot)
+	var rounds_to_save: int = 0
+	if rounds.num_rounds_set != null:
+		rounds_to_save = rounds.num_rounds_set
+	settings.write_save(new_waits, rounds_to_save, one_shot)
 	is_editing = !is_editing
 
 func _on_Edit_button_up() -> void:
