@@ -25,6 +25,7 @@ func _ready() -> void:
 	for i in len(timers):
 		var t: LabelTimer = timers[i]
 		t.idx = i
+		# warning-ignore:return_value_discarded
 		t.connect("timer_timeout", self, "_on_timer_timeout")
 		t.set_wait_time(settings.waits[i])
 		t.show_wait_time()
