@@ -1,7 +1,7 @@
 extends Control
 class_name Rounds
 
-var num_rounds_set = null
+var num_rounds_set
 var rounds: int
 var rounds_label_text: String = "Rounds: %s"
 
@@ -10,11 +10,6 @@ onready var _label_edit: Label = $LabelEdit
 onready var _rounds_edit: LineEdit = $RoundEdit
 
 func _ready() -> void:
-	if num_rounds_set == null:
-		rounds = 0
-	else:
-		rounds = num_rounds_set
-	_set_text(rounds)
 	_label.visible = true
 	_label_edit.visible = false
 	_rounds_edit.visible = false
@@ -53,3 +48,10 @@ func save_edit() -> void:
 	else:
 		num_rounds_set = null
 	_ready()
+
+func set_rounds() -> void:
+	if num_rounds_set == null:
+		rounds = 0
+	else:
+		rounds = num_rounds_set
+	_set_text(rounds)

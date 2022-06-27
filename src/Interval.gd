@@ -1,8 +1,11 @@
 extends Control
 
+# These have the default timer settings
+export(Resource) var settings = preload("res://src/settings.tres")
+
 var running_timer: LabelTimer = null
 var timers: Array
-var one_shot: bool = true
+var one_shot: bool
 var is_editing: bool = false
 
 onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
@@ -15,11 +18,24 @@ func _ready() -> void:
 	var timer_1: LabelTimer = $MarginContainer/VBoxContainer/Timer1
 	var timer_2: LabelTimer = $MarginContainer/VBoxContainer/Timer2
 	timers = [gr_timer, timer_1, timer_2]
+	# Load the previous timer settings from disk
+	var previous_settings = settings.load_save()
+	if previous_settings:
+		settings = previous_settings
 	for i in len(timers):
 		var t: LabelTimer = timers[i]
 		t.idx = i
 		t.connect("timer_timeout", self, "_on_timer_timeout")
+		t.wait_time = settings.waits[i]
+		t.show_wait_time()
+	# Set the rounds
+	if settings.rounds != 0:
+		rounds.num_rounds_set = settings.rounds
+	else:
+		rounds.num_rounds_set = null
+	rounds.set_rounds()
 	# Set the one_shot button state
+	one_shot = settings.one_shot
 	var one_shot_button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/OneShotButton
 	one_shot_button.pressed = one_shot
 
@@ -92,6 +108,7 @@ func get_next_timer(ts: Array, current_t: LabelTimer) -> LabelTimer:
 
 func _on_OneShotButton_toggled(button_pressed: bool) -> void:
 	one_shot = button_pressed
+	settings.write_save_one_shot(one_shot)
 
 func show_wait_times(ts: Array) -> void:
 	for t in ts:
@@ -108,12 +125,15 @@ func enable_edits(ts: Array) -> void:
 	is_editing = !is_editing
 
 func save_edits(ts: Array) -> void:
+	var new_waits: Array = []
 	for t in ts:
 		t.save_edit()
+		new_waits.append(t.wait_time)
 	rounds.save_edit()
 	edit_button_label.text = "EDIT"
 	edit_button_label.add_color_override("font_color_shadow", "b4000000")
 	edit_button_label.add_color_override("font_color", Color(1, 1, 1, 1))
+	settings.write_save(new_waits, rounds.num_rounds_set, one_shot)
 	is_editing = !is_editing
 
 func _on_Edit_button_up() -> void:
