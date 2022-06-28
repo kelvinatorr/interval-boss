@@ -7,8 +7,13 @@ var running_timer: LabelTimer = null
 var timers: Array
 var one_shot: bool
 var is_editing: bool = false
+var green_button_normal_tex: Resource = preload("res://assets/buttons/green_button02.png")
+var green_button_pressed_tex: Resource = preload("res://assets/buttons/green_button03.png")
+var red_button_normal_tex: Resource = preload("res://assets/buttons/red_button02.png")
+var red_button_pressed_tex: Resource = preload("res://assets/buttons/red_button03.png")
 
-onready var start_button_label = $MarginContainer/VBoxContainer/Start/Label
+onready var start_button: TextureButton = $MarginContainer/VBoxContainer/Start
+onready var start_button_label: Label = $MarginContainer/VBoxContainer/Start/Label
 onready var sound_conductor: SoundConductor = $SoundConductor
 onready var rounds: Rounds = $MarginContainer/VBoxContainer/Rounds
 onready var edit_button_label: Label = $MarginContainer/VBoxContainer/Edit/Label
@@ -67,11 +72,15 @@ func check_wait_times(ts: Array) -> bool:
 
 func pause(rt: LabelTimer)-> void:
 	start_button_label.text = "START"
+	start_button.texture_normal = green_button_normal_tex
+	start_button.texture_pressed = green_button_pressed_tex
 	rt.pause()
 	running_timer = null
 
 func start() -> void:
 	start_button_label.text = "PAUSE"
+	start_button.texture_normal = red_button_normal_tex
+	start_button.texture_pressed = red_button_pressed_tex
 	running_timer = get_running_timer(timers)
 	running_timer.start()
 
