@@ -21,6 +21,7 @@ func increment_rounds() -> bool:
 	else:
 		rounds -= 1
 		if rounds == 0:
+			set_rounds()
 			_ready()
 			return true
 	_set_text(rounds)
@@ -47,6 +48,7 @@ func save_edit() -> void:
 		num_rounds_set = rounds_entered
 	else:
 		num_rounds_set = null
+	set_rounds()
 	_ready()
 
 func set_rounds() -> void:
