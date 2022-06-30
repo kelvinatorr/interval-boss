@@ -25,7 +25,7 @@ func play_timer_finish(t_idx: int, timers: Array, rounds: Rounds) -> void:
 	if rounds.num_rounds_set != null and (rounds.rounds - 1) == 0:
 		var no_future_waits: bool = true
 		for timer in timers:
-			if timer != t and timer.wait_time != 0.0:
+			if timer.idx > t.idx and timer.wait_time != 0.0:
 				no_future_waits = false
 		if no_future_waits:
 			# Because it is the last round and the spaceship alarm should play next
