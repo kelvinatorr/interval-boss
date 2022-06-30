@@ -22,7 +22,7 @@ func play_timer_finish(t_idx: int, timers: Array, rounds: Rounds) -> void:
 
 	# If we are in rounds mode and it is the last round, 
 	# look ahead to see if there are future timers with wait times
-	if rounds.num_rounds_set != null and (rounds.rounds - 1) == 0:
+	if rounds.num_rounds_set != null and (rounds.rounds - 1) == 0 and t.idx != 2:
 		var no_future_waits: bool = true
 		for timer in timers:
 			if timer.idx > t.idx and timer.wait_time != 0.0:
