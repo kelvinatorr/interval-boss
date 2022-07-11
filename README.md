@@ -25,3 +25,7 @@ Because I wanted the extra features above, I wanted to learn more about using Go
 3. Open Godot.
 4. Press the Import button and navigate to where you cloned the repo in the step above. 
 5. Select the project.godot file and press Import & Edit.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/kelvinatorr/interval-boss/blob/master/LICENSE) file for details
