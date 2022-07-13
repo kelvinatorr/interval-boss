@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/fonts/button-size-40.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/label-size-70.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/TimeEdit.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -15,6 +15,7 @@ rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 4
 custom_colors/cursor_color = Color( 0, 0, 0, 0.705882 )
 custom_colors/font_color = Color( 0, 0, 0, 0.705882 )
+custom_constants/minimum_spaces = 2
 custom_fonts/font = ExtResource( 1 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )

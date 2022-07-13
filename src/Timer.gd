@@ -2,6 +2,7 @@ extends Control
 class_name LabelTimer
 
 var wait_time: float = 0.0
+var idx: int = 0
 
 onready var _my_timer: Timer = $Timer
 onready var _label: Label = $Label
@@ -11,9 +12,11 @@ onready var _sec_line_edit: LineEdit = $HBoxContainer/SecEdit
 
 signal timer_timeout(timer)
 
-func _ready() -> void:
-	if wait_time > 0.0:
-		_my_timer.wait_time = wait_time
+func set_wait_time(new_wait: float) -> void:
+	# _my_timer.wait_time has to be greater than 0.0
+	if new_wait > 0.0:
+		wait_time = new_wait
+		_my_timer.wait_time = new_wait
 	self.show_wait_time()
 
 func _physics_process(_delta: float) -> void:

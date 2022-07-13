@@ -19,4 +19,5 @@ func calc_total_seconds(min_string: String, sec_string: String) -> float:
 func get_mins_secs(time: float) -> Array:
 	# ceil() to account for not displaying ms
 	var time_int: int = int(ceil(time))
+	# warning-ignore:integer_division
 	return [time_int/60, time_int%60]
