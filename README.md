@@ -2,7 +2,7 @@
 
 ## What
 
-This is a simple timer app that you can use for your rest periods between sets as well as your HIIT and EMOM workouts. The feature set is the same as the [Gymboss Classic](https://gymboss.com/) timer I was using but with 2 extra features that I wanted:
+Interval Boss is a simple timer app that you can use to time rest periods between sets as well as HIIT and EMOM workouts. The feature set is the same as the [Gymboss Classic](https://gymboss.com/) timer I was using but with 2 extra features that I wanted:
 
 1. A "Get Ready" timer that gives you time to prepare (e.g. strap into a rower for HIIT).
 2. A "One-Shot" mode where the timers stop after 1 round, and won't continue until you press START again (useful for timing your rests between sets).
