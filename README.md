@@ -1,5 +1,7 @@
 # Interval Boss
 
+[![Interval Boss](/docs/screenshot-all.png)](https://kelvinatorr.itch.io/interval-boss)
+
 ## What
 
 Interval Boss is a simple timer app that you can use to time rest periods between sets as well as HIIT and EMOM workouts. The feature set is the same as the [Gymboss Classic](https://gymboss.com/) timer I was using but with 2 extra features that I wanted:
@@ -7,13 +9,15 @@ Interval Boss is a simple timer app that you can use to time rest periods betwee
 1. A "Get Ready" timer that gives you time to prepare (e.g. strap into a rower for HIIT).
 2. A "One-Shot" mode where the timers stop after 1 round, and won't continue until you press START again (useful for timing your rests between sets).
 
+[View on itch.io](https://kelvinatorr.itch.io/interval-boss)
+
 ## Why
 
 Because I wanted the extra features above, I wanted to learn more about using Godot, and I was bored.
 
 ## How To Use
 
-1. Press the edit button to set your times for each timer (you can also set a timer to 0).
+1. Press the EDIT button to set your times for each timer (you can also set a timer to 0).
 2. If you set the Rounds to a number it will count down from that number. If you leave Rounds at 0 it will count up from 0.
 3. Press SAVE to save your settings, or START to save and start the timers.
 4. Press START to start the timers if you haven't already.
