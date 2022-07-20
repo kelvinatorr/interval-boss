@@ -1,6 +1,6 @@
 # Interval Boss
 
-[![Interval Boss](/docs/Screenshot-Stopped.png)](https://kelvinatorr.itch.io/interval-boss) [![Interval Boss Running](/docs/Screenshot-Running.png)](https://kelvinatorr.itch.io/interval-boss)
+[![Interval Boss](/docs/screenshot-all.png)](https://kelvinatorr.itch.io/interval-boss)
 
 ## What
 
